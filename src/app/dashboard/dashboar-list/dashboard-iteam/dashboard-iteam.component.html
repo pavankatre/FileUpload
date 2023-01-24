@@ -1,0 +1,65 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4" *ngFor="let prod of product ; let i = index">
+            <div class="card mb-4 shadow-sm">
+                <img class="img-fluid" src="{{prod.productImg}}" alt="">
+                <div class="card-body">
+                    <h4 class="card-title ">{{prod.productName}}</h4>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <div class="btn-group">
+                            <div class="example-button-container">
+                                <button mat-mini-fab color="accent" (click)="quantity('add',prod)"
+                                    aria-label="Example icon button with a plus one icon">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                </button>
+                                <small class="text-muted m-3 d-inline-block">{{prod.productQty}}</small>
+                                <button mat-mini-fab color="accent" (click)="quantity('remove',prod)"
+                                    aria-label="Example icon button with a plus one icon">
+                                    <i class="fa fa-minus" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-text text-muted text-center"> {{prod.productPrice | currency:'INR'}}</p>
+                    <div class="text-center">
+                        <button class="btn btn-sm btn-secondary " (click)="addToCart(prod)">Add to Bag</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h2>My Shopping Bag</h2>
+    <div class="row">
+        <div class="col-sm-10  table-responsive-sm">
+            <table class="table table-bordered" *ngIf="product.length !==0; else elsepart">
+                <thead>
+                    <tr>
+                        <th scope="col">Index</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Price Detail</th>
+                        <th scope="col">Order Total</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let bgData of bagData ; let i=index">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{bgData.productName}}</td>
+                        <td>{{bgData.productQty}}</td>
+                        <td>{{bgData.productPrice | currency:'INR'}}</td>
+                        <td>0.00</td>
+                        <td><i class="fa fa-times text-warning" aria-hidden="true"></i></td>
+                    </tr>
+                    <tr class="text-right">
+                        <td colspan="3">Total</td>
+                        <td>{{total | currency:'INR'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <ng-template #elsepart>
+                <h4>The Student are yet to register</h4>
+            </ng-template>
+        </div>
+    </div>
+</div>
