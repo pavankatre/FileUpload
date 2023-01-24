@@ -36,7 +36,7 @@ export class FormComponent implements OnInit {
     this.img = event.target.files[0]
     let reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]);
-    reader.onload = (ev: any) => {
+    reader.onload = (ev:any) => {
       this.imgFile = ev.target.result;
     }
   }
